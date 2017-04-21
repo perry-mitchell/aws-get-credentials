@@ -12,6 +12,17 @@ const readFile = pify(fs.readFile);
 //      ~/.aws/credentials
 // As defined by Amazon: http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-config-files
 
+/**
+ * Get an AWS.Credentials instance by reading a local credentials configuration
+ * @param {String=} profileOverride Optional override for the profile to use
+ *  (defaults to an environment variable `AWS_DEFAULT_PROFILE` first, and then
+ *  to "default" lastly)
+ * @param {String=} pathOverride Optional override for the credentials path
+ *  (defaults first to the environment variable `AWS_CREDENTIALS_PATH`, and
+ *  then to `~/.aws/credentials` lastly)
+ * @returns {Promise.<AWS.Credentials>} A promise that resolves with the AWS
+ *  Credentials instance
+ */
 module.exports = function getAWSCredentials(profileOverride, pathOverride) {
     const awsCredentialsPath = pathOverride ||
         process.env.AWS_CREDENTIALS_PATH ||
