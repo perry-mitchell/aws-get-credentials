@@ -1,7 +1,7 @@
 # aws-get-credentials
 Create an AWS credentials instance from local credentials
 
-[![Build Status](https://travis-ci.org/perry-mitchell/aws-get-credentials.svg?branch=master)](https://travis-ci.org/perry-mitchell/aws-get-credentials)
+[![npm version](https://badge.fury.io/js/aws-get-credentials.svg)](https://www.npmjs.com/package/aws-get-credentials) [![Build Status](https://travis-ci.org/perry-mitchell/aws-get-credentials.svg?branch=master)](https://travis-ci.org/perry-mitchell/aws-get-credentials)
 
 ## About
 Fetch a credentials instance from your local machine using a very simple fetcher method.

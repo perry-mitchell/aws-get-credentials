@@ -4,9 +4,10 @@ const pify = require("pify");
 const osHomedir = require("os-homedir");
 const ini = require("ini");
 const VError = require("verror");
-const { Credentials } = require("aws-sdk");
 
-const readFile = pify(fs.readFile);
+// Let-only for testing purposes
+let readFile = pify(fs.readFile);
+let getCredentialsClass = () => require("aws-sdk").Credentials;
 
 // Credentials file should be at the following path:
 //      ~/.aws/credentials
@@ -24,6 +25,7 @@ const readFile = pify(fs.readFile);
  *  Credentials instance
  */
 module.exports = function getAWSCredentials(profileOverride, pathOverride) {
+    const Credentials = getCredentialsClass();
     const awsCredentialsPath = pathOverride ||
         process.env.AWS_CREDENTIALS_PATH ||
         path.resolve(osHomedir(), "./.aws/credentials");

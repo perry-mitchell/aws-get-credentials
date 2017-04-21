@@ -1,4 +1,5 @@
 {
+  "root": true,
   "env": {
     "browser": true,
     "node": true,
@@ -134,7 +135,7 @@
     "no-spaced-func": 2,
     "no-trailing-spaces": [2,{"skipBlankLines":true}],
     "operator-linebreak": [2,"after"],
-    "padded-blocks": [2,"never"],
+    "padded-blocks": 0,
     "quote-props": [2,"as-needed"],
     "quotes": [2,"double","avoid-escape"],
     "semi-spacing": [2,{"after":true}],
