@@ -34,7 +34,7 @@ module.exports = function getAWSCredentials(profileOverride, pathOverride) {
             }
             return new Credentials(accessKey, secretKey);
         })
-        .catch(function(error) {
+        .catch(function _handleFailure(error) {
             throw new VError(error, "Failed getting credentials");
         });
 };
