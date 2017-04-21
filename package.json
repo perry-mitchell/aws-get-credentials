@@ -1,0 +1,36 @@
+{
+  "name": "aws-get-credentials",
+  "version": "0.1.0",
+  "description": "Create an AWS credentials instance from local credentials",
+  "main": "source/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/perry-mitchell/aws-get-credentials.git"
+  },
+  "keywords": [
+    "aws",
+    "credentials",
+    "authenticate",
+    "amazon",
+    "aws",
+    "credentials"
+  ],
+  "author": "Perry Mitchell <perry@perrymitchell.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/perry-mitchell/aws-get-credentials/issues"
+  },
+  "homepage": "https://github.com/perry-mitchell/aws-get-credentials#readme",
+  "peerDependencies": {
+    "aws-sdk": "2.x"
+  },
+  "dependencies": {
+    "ini": "^1.3.4",
+    "os-homedir": "^1.0.2",
+    "pify": "^2.3.0",
+    "verror": "^1.9.0"
+  }
+}
