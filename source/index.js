@@ -24,7 +24,7 @@ let getCredentialsClass = () => require("aws-sdk").Credentials;
  * @returns {Promise.<AWS.Credentials>} A promise that resolves with the AWS
  *  Credentials instance
  */
-module.exports = function getAWSCredentials(profileOverride, pathOverride) {
+function getAWSCredentials(profileOverride, pathOverride) {
     const Credentials = getCredentialsClass();
     const awsCredentialsPath = pathOverride ||
         process.env.AWS_CREDENTIALS_PATH ||
@@ -34,7 +34,7 @@ module.exports = function getAWSCredentials(profileOverride, pathOverride) {
         "default";
     return readFile(awsCredentialsPath, "utf8")
         .then(rawData => ini.parse(rawData))
-        .then(function _handleCredentialsConfig(credentialsData) {
+        .then(credentialsData => {
             const {
                 aws_access_key_id: accessKey,
                 aws_secret_access_key: secretKey
@@ -47,7 +47,27 @@ module.exports = function getAWSCredentials(profileOverride, pathOverride) {
             }
             return new Credentials(accessKey, secretKey);
         })
-        .catch(function _handleFailure(error) {
+        .catch(error => {
             throw new VError(error, "Failed getting credentials");
         });
+};
+
+function getAWSProfiles(pathOverride) {
+    const awsCredentialsPath = pathOverride ||
+        process.env.AWS_CREDENTIALS_PATH ||
+        path.resolve(osHomedir(), "./.aws/credentials");
+    return readFile(awsCredentialsPath, "utf8")
+        .then(rawData => ini.parse(rawData))
+        .then(credentials => credentials && typeof credentials === "object"
+            ? Object.keys(credentials)
+            : []
+        )
+        .catch(err => {
+            throw new VError(error, "Failed getting profiles");
+        });
+}
+
+module.exports = {
+    getAWSCredentials,
+    getAWSProfiles
 };
