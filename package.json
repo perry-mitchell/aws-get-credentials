@@ -4,9 +4,8 @@
   "description": "Create an AWS credentials instance from local credentials",
   "main": "source/index.js",
   "scripts": {
-    "lint": "eslint source/**/*.js",
-    "test": "npm run lint",
-    "test:unit": "mocha test/**/*.spec.js"
+    "test": "npm run test:unit",
+    "test:unit": "nyc mocha -r test/index.js test/unit/**/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -36,11 +35,10 @@
     "verror": "^1.9.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
-    "eslint": "^3.19.0",
-    "mocha": "^3.2.0",
-    "rewire": "^2.5.2",
-    "sinon": "^2.1.0"
+    "aws-sdk": "^2.618.0",
+    "chai": "^4.2.0",
+    "mocha": "^7.0.1",
+    "nyc": "^15.0.0",
+    "sinon": "^8.1.1"
   }
 }
