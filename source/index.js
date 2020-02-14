@@ -30,12 +30,11 @@ const getCredentialsClass = () => require("aws-sdk").Credentials;
  */
 function getAWSCredentials(profileOverride, pathOverride) {
     const Credentials = getCredentialsClass();
-    const awsCredentialsPath = pathOverride ||
+    const awsCredentialsPath =
+        pathOverride ||
         process.env.AWS_CREDENTIALS_PATH ||
         path.resolve(osHomedir(), "./.aws/credentials");
-    const awsCredentialsProfile = profileOverride ||
-        process.env.AWS_DEFAULT_PROFILE ||
-        "default";
+    const awsCredentialsProfile = profileOverride || process.env.AWS_DEFAULT_PROFILE || "default";
     return readFile(awsCredentialsPath, "utf8")
         .then(rawData => ini.parse(rawData))
         .then(credentialsData => {
@@ -54,7 +53,7 @@ function getAWSCredentials(profileOverride, pathOverride) {
         .catch(error => {
             throw new VError(error, "Failed getting credentials");
         });
-};
+}
 
 /**
  * Get an array of available AWS profiles
@@ -63,14 +62,14 @@ function getAWSCredentials(profileOverride, pathOverride) {
  * @memberof module:GetAWSCredentials
  */
 function getAWSProfiles(pathOverride) {
-    const awsCredentialsPath = pathOverride ||
+    const awsCredentialsPath =
+        pathOverride ||
         process.env.AWS_CREDENTIALS_PATH ||
         path.resolve(osHomedir(), "./.aws/credentials");
     return readFile(awsCredentialsPath, "utf8")
         .then(rawData => ini.parse(rawData))
-        .then(credentials => credentials && typeof credentials === "object"
-            ? Object.keys(credentials)
-            : []
+        .then(credentials =>
+            credentials && typeof credentials === "object" ? Object.keys(credentials) : []
         )
         .catch(err => {
             throw new VError(error, "Failed getting profiles");
