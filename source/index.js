@@ -5,13 +5,16 @@ const osHomedir = require("os-homedir");
 const ini = require("ini");
 const VError = require("verror");
 
-// Let-only for testing purposes
-let readFile = pify(fs.readFile);
-let getCredentialsClass = () => require("aws-sdk").Credentials;
+const readFile = pify(fs.readFile);
+const getCredentialsClass = () => require("aws-sdk").Credentials;
 
 // Credentials file should be at the following path:
 //      ~/.aws/credentials
 // As defined by Amazon: http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-config-files
+
+/**
+ * @module GetAWSCredentials
+ */
 
 /**
  * Get an AWS.Credentials instance by reading a local credentials configuration
@@ -23,6 +26,7 @@ let getCredentialsClass = () => require("aws-sdk").Credentials;
  *  then to `~/.aws/credentials` lastly)
  * @returns {Promise.<AWS.Credentials>} A promise that resolves with the AWS
  *  Credentials instance
+ * @memberof module:GetAWSCredentials
  */
 function getAWSCredentials(profileOverride, pathOverride) {
     const Credentials = getCredentialsClass();
@@ -52,6 +56,12 @@ function getAWSCredentials(profileOverride, pathOverride) {
         });
 };
 
+/**
+ * Get an array of available AWS profiles
+ * @param {String=} pathOverride Optional AWS credentials file path override
+ * @returns {Promise.<String[]>}
+ * @memberof module:GetAWSCredentials
+ */
 function getAWSProfiles(pathOverride) {
     const awsCredentialsPath = pathOverride ||
         process.env.AWS_CREDENTIALS_PATH ||
