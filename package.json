@@ -4,6 +4,7 @@
   "description": "Create an AWS credentials instance from local credentials",
   "main": "source/index.js",
   "scripts": {
+    "docs": "jsdoc2md source/**/*.js > API.md",
     "format": "prettier --write \"{source,test}/**/*.js\"",
     "test": "npm run test:unit",
     "test:format": "prettier-check \"{source,test}/**/*.js\"",
@@ -49,6 +50,7 @@
     "aws-sdk": "^2.618.0",
     "chai": "^4.2.0",
     "husky": "^4.2.3",
+    "jsdoc-to-markdown": "^5.0.3",
     "lint-staged": "^10.0.7",
     "mocha": "^7.0.1",
     "nyc": "^15.0.0",
