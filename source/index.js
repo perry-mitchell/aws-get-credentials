@@ -1,7 +1,7 @@
 const path = require("path");
 const fs = require("fs");
+const os = require("os");
 const pify = require("pify");
-const osHomedir = require("os-homedir");
 const ini = require("ini");
 const VError = require("verror");
 
@@ -33,7 +33,7 @@ function getAWSCredentials(profileOverride, pathOverride) {
     const awsCredentialsPath =
         pathOverride ||
         process.env.AWS_CREDENTIALS_PATH ||
-        path.resolve(osHomedir(), "./.aws/credentials");
+        path.resolve(os.homedir(), "./.aws/credentials");
     const awsCredentialsProfile = profileOverride || process.env.AWS_DEFAULT_PROFILE || "default";
     return readFile(awsCredentialsPath, "utf8")
         .then(rawData => ini.parse(rawData))
@@ -65,7 +65,7 @@ function getAWSProfiles(pathOverride) {
     const awsCredentialsPath =
         pathOverride ||
         process.env.AWS_CREDENTIALS_PATH ||
-        path.resolve(osHomedir(), "./.aws/credentials");
+        path.resolve(os.homedir(), "./.aws/credentials");
     return readFile(awsCredentialsPath, "utf8")
         .then(rawData => ini.parse(rawData))
         .then(credentials =>
