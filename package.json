@@ -10,6 +10,10 @@
     "test:format": "prettier-check \"{source,test}/**/*.js\"",
     "test:unit": "nyc mocha -r test/index.js test/unit/**/*.spec.js"
   },
+  "files": [
+    "source/**/*.js",
+    "*.md"
+  ],
   "lint-staged": {
     "{source,test}/**/*.js": [
       "prettier --write"
