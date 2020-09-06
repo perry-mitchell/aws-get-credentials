@@ -19,8 +19,8 @@ const getCredentialsClass = () => require("aws-sdk").Credentials;
 /**
  * Get an AWS.Credentials instance by reading a local credentials configuration
  * @param {String=} profileOverride Optional override for the profile to use
- *  (defaults to an environment variable `AWS_DEFAULT_PROFILE` first, and then
- *  to "default" lastly)
+ *  (defaults to an environment variable `AWS_PROFILE` first`, then
+ *  `AWS_DEFAULT_PROFILE` second, and then to "default" lastly)
  * @param {String=} pathOverride Optional override for the credentials path
  *  (defaults first to the environment variable `AWS_CREDENTIALS_PATH`, and
  *  then to `~/.aws/credentials` lastly)
@@ -34,7 +34,8 @@ function getAWSCredentials(profileOverride, pathOverride) {
         pathOverride ||
         process.env.AWS_CREDENTIALS_PATH ||
         path.resolve(os.homedir(), "./.aws/credentials");
-    const awsCredentialsProfile = profileOverride || process.env.AWS_DEFAULT_PROFILE || "default";
+    const awsCredentialsProfile =
+        profileOverride || process.env.AWS_PROFILE || process.env.AWS_DEFAULT_PROFILE || "default";
     return readFile(awsCredentialsPath, "utf8")
         .then(rawData => ini.parse(rawData))
         .then(credentialsData => {
