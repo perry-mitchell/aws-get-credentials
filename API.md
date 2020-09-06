@@ -17,7 +17,7 @@ Get an AWS.Credentials instance by reading a local credentials configuration
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [profileOverride] | <code>String</code> | Optional override for the profile to use  (defaults to an environment variable `AWS_DEFAULT_PROFILE` first, and then  to "default" lastly) |
+| [profileOverride] | <code>String</code> | Optional override for the profile to use  (defaults to an environment variable `AWS_PROFILE` first, then  `AWS_DEFAULT_PROFILE` second, and then to "default" lastly) |
 | [pathOverride] | <code>String</code> | Optional override for the credentials path  (defaults first to the environment variable `AWS_CREDENTIALS_PATH`, and  then to `~/.aws/credentials` lastly) |
 
 <a name="module_GetAWSCredentials.getAWSProfiles"></a>

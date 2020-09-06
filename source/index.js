@@ -19,7 +19,7 @@ const getCredentialsClass = () => require("aws-sdk").Credentials;
 /**
  * Get an AWS.Credentials instance by reading a local credentials configuration
  * @param {String=} profileOverride Optional override for the profile to use
- *  (defaults to an environment variable `AWS_PROFILE` first`, then
+ *  (defaults to an environment variable `AWS_PROFILE` first, then
  *  `AWS_DEFAULT_PROFILE` second, and then to "default" lastly)
  * @param {String=} pathOverride Optional override for the credentials path
  *  (defaults first to the environment variable `AWS_CREDENTIALS_PATH`, and
