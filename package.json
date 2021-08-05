@@ -1,6 +1,6 @@
 {
   "name": "aws-get-credentials",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Create an AWS credentials instance from local credentials",
   "main": "source/index.js",
   "scripts": {
