@@ -23,10 +23,16 @@ Check out the [API documentation](API.md) for more information.
 The method `getAWSCredentials` takes two parameters:
 
 ```javascript
-getAWSCredentials(optionalProfileOverride, optionalPathOverride) // => Promise.<AWS.Credentials>
+getAWSCredentials(
+    optionalProfileOverride,
+    optionalPathOverride,
+    useEnvironmentVariables = false
+) // => Promise.<AWS.Credentials>
 ```
 
 `optionalProfileOverride` is an optional override for the profile to use (defaults to an environment variable `AWS_DEFAULT_PROFILE` first, then "default" lastly). `optionalPathOverride` is an optional override for the path to the credentials file (defaults to an environment variable `AWS_CREDENTIALS_PATH` first, and then `~/.aws/credentials` lastly).
+
+Providing `true` for the 3rd parameter, "useEnvironmentVariables", tells `getAWSCredentials` to return a `Credentials` instance using the available environment variables _instead_ of trying to read from the local credentials file.
 
 #### Example
 

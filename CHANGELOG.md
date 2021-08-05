@@ -1,5 +1,11 @@
 # AWS-Get-Credentials changelog
 
+## v2.0.0
+_2021-08-05_
+
+ * `useEnvironmentVariables` option for `getAWSCredentials`, allowing the method to return environment variables if present
+ * Minimum Node version is now `12`
+
 ## v1.1.0
 _2020-09-06_
 
