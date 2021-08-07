@@ -82,7 +82,7 @@ function getAWSProfiles(pathOverride) {
         .then(credentials =>
             credentials && typeof credentials === "object" ? Object.keys(credentials) : []
         )
-        .catch(err => {
+        .catch(error => {
             throw new VError(error, "Failed getting profiles");
         });
 }
